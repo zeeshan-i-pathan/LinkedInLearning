@@ -1,0 +1,12 @@
+[APP]
+description = "sample config"
+analysis_class = "Correlation"
+
+[FORMAT]
+  [FORMAT.".csv"]
+    row_generator = "csv.DictReader"
+    sample_builder = "build_from_str"
+  [FORMAT.".json"]
+    row_generator = "ndjson_iter"
+    sample_builder = "build_from_float"
+

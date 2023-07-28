@@ -1,0 +1,91 @@
+[project]
+name = "SOLID Python"
+version = "2021.8.1"
+description = "LinkedIn Learning Course Material for S. O. L. I. D."
+readme = "README.md"
+requires-python = ">=3.9.5"
+keywords = ["SOLID"]
+dependencies = ["toml==0.10.2"]
+
+[[project.authors]]
+email = "slott56@gmail.com"
+
+[[project.authors]]
+name = "Steven F. Lott"
+
+[project.license]
+file = "LICENSE.txt"
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+minversion = 3.20.0
+skipsdist = True
+envlist = ch00,ch01,ch02,ch03,ch05
+[testenv]
+description = "Master suite of tests for all modules."
+deps =
+	pytest==6.2.4
+	pytest-cov==2.12.0
+	mypy==0.910
+	black==21.7b0
+	toml==0.10.2
+
+[testenv:ch00]
+deps = {[testenv]deps}
+changedir = ch00
+commands =
+	black .
+	python -m doctest --option ELLIPSIS ex_00_02.py
+	mypy --strict --python-version 3.9 --show-error-codes .
+
+[testenv:ch01]
+deps = {[testenv]deps}
+changedir = ch01
+commands =
+	black .
+	python -m doctest --option ELLIPSIS ex_01_01.py
+	python -m doctest --option ELLIPSIS ex_01_02.py
+	python -m doctest --option ELLIPSIS ex_01_03.py
+	python -m doctest --option ELLIPSIS ex_01_04.py
+	python -m doctest --option ELLIPSIS ex_01_05.py
+	pytest test_ch01.py
+	mypy --strict --python-version 3.9 --show-error-codes .
+
+[testenv:ch02]
+deps = {[testenv]deps}
+changedir = ch02
+commands =
+	black .
+	python -m doctest --option ELLIPSIS ex_02_01.py
+	python -m doctest --option ELLIPSIS ex_02_02.py
+	python -m doctest --option ELLIPSIS ex_02_03.py
+	python -m doctest --option ELLIPSIS ex_02_04.py
+	python -m doctest --option ELLIPSIS ex_02_05.py
+	mypy --strict --python-version 3.9 --show-error-codes .
+
+
+[testenv:ch03]
+deps = {[testenv]deps}
+changedir = ch03
+commands =
+	black .
+	python -m doctest --option ELLIPSIS ex_03_01.py
+	python -m doctest --option ELLIPSIS ex_03_02.py
+	python -m doctest --option ELLIPSIS ex_03_03.py
+	python -m doctest --option ELLIPSIS ex_03_04.py
+	python -m doctest --option ELLIPSIS ex_03_05.py
+	python -m doctest --option ELLIPSIS ex_03_06.py
+	pytest test_ch03.py
+	mypy --strict --python-version 3.9 --show-error-codes .
+
+[testenv:ch05]
+deps = {[testenv]deps}
+changedir = ch05
+commands =
+	black .
+	python -m doctest --option ELLIPSIS ex_05_01.py
+	pytest test_ch05.py
+	mypy --strict --python-version 3.9 --show-error-codes .
+
+"""
